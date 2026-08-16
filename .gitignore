@@ -1,7 +1,17 @@
 .env
+.env.docker
 __pycache__/
 *.pyc
 *.egg-info/
 .pytest_cache/
 .idea/
 test.db
+.venv/
+
+*.db
+*.sqlite
+*.sqlite3
+
+# PostgreSQL local data
+postgres_data/
+pgdata/
