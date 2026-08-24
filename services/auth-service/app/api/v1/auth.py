@@ -16,7 +16,7 @@ async def register(
     service = AuthService(db)
     user = await  service.register(data)
     return UserResponse(
-        id=str(user.id),
+        id=user.id,
         email=user.email,
         is_active=user.is_active,
         is_verified=user.is_verified,
