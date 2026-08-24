@@ -3,7 +3,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.models.user import User
 from app.repositories.user_repository import UserRepository
-from app.schemas.user_schema import RegisterRequest
+from app.schemas.auth import RegisterRequest
 from app.security.password import hash_password, verify_password
 
 
