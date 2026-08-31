@@ -5,7 +5,7 @@ from app.core.config import settings
 
 
 def create_access_token(user_id:str) ->str:
-    expire = datetime.utcnow() + timedelta(minutes=settings.ACCESS_TOKEN_EXPIRE_MINUTES)
+    expire = datetime.utcnow() + timedelta(minutes=settings.access_token_expire_minutes)
     payload = {
         "sub": user_id,
         "type":"access",
