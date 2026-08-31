@@ -1,11 +1,12 @@
-from datetime import datetime,timezone,timedelta
+from datetime import datetime,timedelta
+import datetime
 from jose import jwt
 
 from app.core.config import settings
 
 
 def create_access_token(user_id:str) ->str:
-    expire = datetime.utcnow() + timedelta(minutes=settings.access_token_expire_minutes)
+    expire = datetime.datetime.now(datetime.UTC) + timedelta(minutes=settings.access_token_expire_minutes)
     payload = {
         "sub": user_id,
         "type":"access",
