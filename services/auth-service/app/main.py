@@ -7,6 +7,8 @@ app = FastAPI(title="Auth Service",version="1.0.0")
 
 app.include_router(router,prefix="/api/v1/auth",tags=["authentication"])
 
+app.include_router(router,prefix="/api/v1/users",tags=["users"])
+
 
 
 @app.get("/health")
