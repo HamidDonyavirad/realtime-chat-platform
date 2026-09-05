@@ -19,8 +19,9 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
         headers={"WWW-Authenticate": "Bearer"},
         )
     try:
-        payload = jwt.decode(token, settings.jwt_secret_key, algorithm=settings.jwt_algorithm)
+        payload = jwt.decode(token, settings.jwt_secret_key, algorithms=settings.jwt_algorithm)
         user_id: str = payload.get("sub")
+        token_type: str = payload.get("type")
         if user_id is None:
             raise credentials_exception
 
@@ -34,7 +35,7 @@ async def get_current_user(token: str = Depends(oauth2_scheme), db: AsyncSession
 
     repository = UserRepository(db)
 
-    user = await repository.get_user_by_id(user_id)
+    user = await repository.get_by_id(user_id)
 
     if user is None:
         raise credentials_exception
