@@ -1,5 +1,4 @@
 
-
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
 
@@ -22,8 +21,8 @@ class RefreshTokenRepository:
         )
         return result.scalar_one_or_none()
 
-    async def revorke (self,refresh_token:RefreshToken) ->  None:
-        refresh_token.is_revorked = True
+    async def revoke (self,refresh_token:RefreshToken) ->  None:
+        refresh_token.is_revoked = True
         await self.db.commit()
 
 
