@@ -47,3 +47,10 @@ async def refresh(data:RefreshRequest,db:AsyncSession = Depends(get_db)) ->Token
     service = AuthService(db)
     access_token = await service.refresh_token(data.refresh_token)
     return TokenResponse(access_token=access_token,refresh_token=refresh_token,token_type="bearer")
+
+
+@router.post("/logout")
+async def logout(data:LogoutRequest,db:AsyncSession = Depends(get_db)) ->dict:
+    service = AuthService(db)
+    await service.logout(data.refresh_token)
+    return {"message":"Successfully logged out"}
