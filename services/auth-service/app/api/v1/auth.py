@@ -41,3 +41,9 @@ async def current_user(
         is_active=current_user.is_active,
         is_verified=current_user.is_verified,
     )
+
+@router.post("/refresh",response_model=TokenResponse)
+async def refresh(data:RefreshRequest,db:AsyncSession = Depends(get_db)) ->TokenResponse:
+    service = AuthService(db)
+    access_token = await service.refresh_token(data.refresh_token)
+    return TokenResponse(access_token=access_token,refresh_token=refresh_token,token_type="bearer")
