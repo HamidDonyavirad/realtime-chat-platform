@@ -27,8 +27,8 @@ async def register(
 @router.post("/login",response_model=TokenResponse)
 async def login(data:LoginRequest,db:AsyncSession = Depends(get_db)) ->TokenResponse:
     service = AuthService(db)
-    access_token = await service.login(data)
-    return TokenResponse(access_token=access_token,token_type="bearer")
+    access_token,refresh_token = await service.login(data)
+    return TokenResponse(access_token=access_token,refresh_token=refresh_token,token_type="bearer")
 
 @router.get("/me",response_model=UserResponse)
 async def current_user(
