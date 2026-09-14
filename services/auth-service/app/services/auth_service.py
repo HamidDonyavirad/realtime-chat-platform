@@ -73,5 +73,10 @@ class AuthService:
         access_token = create_access_token(str(user.id))
         return access_token, refresh_token
 
+    async def logout(self,refresh_token:str) -> None:
 
-
+        token_hash = hash_refresh_token(refresh_token)
+        stored_token = await self.user_repository.get_by_hash(token_hash)
+        if stored_token is None:
+            return
+        await self.user_repository.revoke(stored_token)
