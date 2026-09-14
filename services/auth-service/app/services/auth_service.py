@@ -54,3 +54,24 @@ class AuthService:
         return access_token, refresh_token
 
 
+    async def refresh(self,refresh_token:str) -> tuple[str,str]:
+        token_hash = hash_refresh_token(refresh_token)
+        stored_token = await self.user_repository.get_by_hash(token_hash)
+        if stored_token is None:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Invalid refresh token")
+        if stored_token.is_revoked:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Refresh token has been revoked")
+
+        if stored_token.expires_at <= datetime.now(timezone.utc):
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Refresh token expired")
+
+        user = await self.user_repository.get_by_id(stored_token.user_id)
+
+        if user is None or not user.is_active:
+            raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,detail="Invalid refresh token")
+
+        access_token = create_access_token(str(user.id))
+        return access_token, refresh_token
+
+
+
