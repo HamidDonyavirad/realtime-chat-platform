@@ -1,6 +1,6 @@
 from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
-from datatime import datetime, timedelta, timezone
+from datetime import datetime, timedelta, timezone
 
 from app.models.user import User
 from app.models.refresh_token import RefreshToken
@@ -8,8 +8,9 @@ from app.repositories.refresh_token_repository import RefreshTokenRepository
 from app.repositories.user_repository import UserRepository
 from app.schemas.auth import RegisterRequest, LoginRequest
 from app.security.password import hash_password, verify_password
-from app.security.refresh_token import RefreshToken
+from app.security.refresh_token import generate_refresh_token,hash_refresh_token
 from app.security.jwt import create_access_token
+from app.core.config import settings
 
 
 class AuthService:
