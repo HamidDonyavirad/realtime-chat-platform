@@ -13,6 +13,7 @@ async def test_login_success(client):
     assert response_login.status_code == 200
     data = response_login.json()
     assert "access_token" in data
+    assert "refresh_token" in data
     assert data["token_type"] == "bearer"
 
 
