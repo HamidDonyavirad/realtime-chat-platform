@@ -1,6 +1,7 @@
 from datetime import datetime,timedelta
 import datetime
 from jose import jwt
+from uuid import uuid4
 
 from app.core.config import settings
 
@@ -10,7 +11,8 @@ def create_access_token(user_id:str) ->str:
     payload = {
         "sub": user_id,
         "type":"access",
-        "exp": expire
+        "exp": expire,
+        "jti": str(uuid4())
     }
     return jwt.encode(
         payload,
