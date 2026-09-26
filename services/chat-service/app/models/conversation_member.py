@@ -10,7 +10,7 @@ class ConversationMember(Base):
 
     conversation_id: Mapped[uuid.UUID] = mapped_column(
         UUID(as_uuid=True),
-        foreignkey('conversation.id',ondelete="CASCADE"),
+        ForeignKey('conversation.id',ondelete="CASCADE"),
         primary_key=True,
     )
 
