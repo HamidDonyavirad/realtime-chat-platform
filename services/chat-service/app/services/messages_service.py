@@ -2,12 +2,12 @@ from uuid import UUID
 from fastapi import HTTPException, status
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from app.models.message import Message
-from app.repository.message_repository import MessageRepository
-from app.repository.conversation_repository import ConversationRepository
+from app.models.messages import Messages
+from app.repositories.message_repository import MessageRepository
+from app.repositories.conversation_repository import ConversationRepository
 
 class MessagesService:
-    def __init__(self, session: AsyncSession):
+    def __init__(self, db: AsyncSession):
         self.db = db
         self.message_repository = MessageRepository(db)
         self.conversation_repository = ConversationRepository(db)

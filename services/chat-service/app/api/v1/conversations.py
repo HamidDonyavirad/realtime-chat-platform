@@ -7,8 +7,8 @@ from app.security.dependencies import get_current_user
 from app.schemas.conversation import (CreateConversationRequest,ConversationResponse)
 from app.security.dependencies import get_current_user
 from app.services.conversation_service import ConversationService
-from app.schemas.message import (MessageResponse,SendMessageRequest)
-from app.services.message_service import MessageService
+from app.schemas.messages import (MessageResponse,SendMessageRequest)
+from app.services.messages_service import MessagesService
 
 
 
