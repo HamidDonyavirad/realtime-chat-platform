@@ -1,14 +1,14 @@
 from uuid import UUID
-from fastapi import Websocket
+from fastapi import WebSocket
 
 
 class ConnectionManager:
     def __init__(self):
-        self.active_connections : dict [UUID,Websocket] = {}
+        self.active_connections : dict [UUID,WebSocket] = {}
 
-    async def connect(self,user_id:UUID,websocket:Websocket)->None:
+    async def connect(self,user_id:UUID,websocket:WebSocket)->None:
         await websocket.accept()
-        self.active_connections[user_id] = websockets
+        self.active_connections[user_id] = websocket
 
     def disconnect(self,user_id:UUID)->None:
         self.active_connections.pop(user_id, None)
