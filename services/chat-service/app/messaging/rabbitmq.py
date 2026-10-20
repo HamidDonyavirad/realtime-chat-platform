@@ -1,7 +1,7 @@
 import json
 from typing import Any
 import aio_pika
-from aio_pika import DelleveryMode, ExchangeType, Message
+from aio_pika import DeliveryMode, ExchangeType, Message
 
 from app.core.config import settings
 

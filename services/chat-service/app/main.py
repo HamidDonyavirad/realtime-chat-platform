@@ -3,7 +3,7 @@ from contextlib import asynccontextmanager
 
 from app.api.v1.conversations import router as conversations_router
 from app.api.v1.websocket import router as websocket_router
-from app.messaging import RabbitMQ
+from app.messaging.rabbitmq import RabbitMQ
 
 
 app = FastAPI(title="Chat Service",version="1.0.0",)

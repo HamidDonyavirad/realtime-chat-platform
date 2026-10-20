@@ -5,7 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.db.database import AsyncSessionLocal
 from app.security.websocket import get_websocket_user_id
 from app.services.conversation_service import ConversationService
-from app.services.message_service import MessageService
+from app.services.messages_service import MessagesService
 from app.websocket.manager import manager
 
 router = APIRouter()
