@@ -8,6 +8,8 @@ from aio_pika.abc import AbstractIncomingMessage
 from app.core.config import settings
 
 
+EventHandler = Callable[[dict[str, Any]], Awaitable[None]]
+
 class RabbitMQ:
     def __init__(self):
         self.connection = None
