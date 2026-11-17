@@ -1,4 +1,4 @@
 from sqlalchemy.orm import DeclarativeBase
 
-class Settings(BaseSettings):
+class Base(DeclarativeBase):
     pass
