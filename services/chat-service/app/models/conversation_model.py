@@ -3,6 +3,7 @@ from uuid import uuid4,UUID
 from enum import Enum as PyEnum
 from datetime import datetime,timezone
 from sqlalchemy import CheckConstraint,String,DateTime, or_,and_,column ,Enum as SAEnum, func
+from typing import List
 
 from app.db.base import Base
 
@@ -13,7 +14,7 @@ class ConversationType(str, PyEnum):
 
 
 class ConversationModel(Base):
-    __tablename__ = 'conversations'
+    __tablename__ = 'conversation'
     __table_args__ = (CheckConstraint(
         or_(
             and_(
@@ -70,4 +71,10 @@ class ConversationModel(Base):
     deleted_at :Mapped [datetime|None] = mapped_column(
         DateTime(timezone=True),
         nullable=True,
+    )
+
+
+
+    conversation_members :Mapped [List["conversation_member"]] = mapped_column(
+        back_populates="conversation_id", cascade="all, delete-orphan",
     )
