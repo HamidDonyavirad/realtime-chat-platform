@@ -78,3 +78,7 @@ class ConversationModel(Base):
     conversation_members :Mapped [List["conversation_member"]] = mapped_column(
         back_populates="conversation_id", cascade="all, delete-orphan",
     )
+
+    messages :Mapped [List["message"]] = mapped_column(
+        back_populates="conversation_id",cascade="all, delete-orphan",
+    )
